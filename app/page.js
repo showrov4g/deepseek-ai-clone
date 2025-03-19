@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex h-full">
+      <div className="flex h-screen">
         {/* sidebar  */}
         <div className="flex-1 flex flex-col items-center justify-center px-4 pb-8  bg-[#292a2d] text-white relative">
           <div className="md:hidden absolute top-6 px-4 flex items-center justify-between w-full">
@@ -25,7 +25,7 @@ export default function Home() {
           </div>
           {messages.length === 0 ? (
             <>
-              <div>
+              <div className="flex items-center gap-3">
                 <Image  src={assets.logo_icon} alt="" className="h-16" />
                 <p className="text-2xl font-medium">Hi, i am DeepSeek</p>
               </div>
