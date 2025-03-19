@@ -21,6 +21,13 @@ const Sidebar = ({ expand, setExpand }) => {
             </div>
           </div>
         </div>
+                {/* button  */}
+            <Image className={expand? "w-6": "w-7"} src={expand ? assets.chat_icon : assets.chat_icon_dull} alt="" />
+                <div>
+                    New Chat 
+                    <div className="w-3 h-3 absolute bg-black rotate-45 left-4 -bottom-1.5"></div>
+                </div>
+
       </div>
     </div>
   );
