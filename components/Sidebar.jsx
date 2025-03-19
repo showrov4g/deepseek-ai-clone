@@ -1,3 +1,4 @@
+"use client";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
 import React from "react";
@@ -65,7 +66,7 @@ const Sidebar = ({ expand, setExpand }) => {
         </button>
         {/* ------------ */}
         <div
-          className={`mt-8 text-white/25 text-sm ${
+          className={`mt-8 text-white/25 text-sm${
             expand ? "block" : "hidden"
           }`}
         >
@@ -74,32 +75,7 @@ const Sidebar = ({ expand, setExpand }) => {
         </div>
       </div>
       {/* add some space  */}
-      <div>
-        <div className={`flex items-center cursor-pointer group relative `}>
-          <Image
-            className={expand ? "w-5" : "w-6.5 mx-auto"}
-            src={expand ? assets.phone_icon : assets.phone_icon_dull}
-            alt=""
-          />
-          <div className={`absolute -top-60 pb-8 ${!expand && "-right-40"} opacity-0 group-hover:opacity-100 group-hover:block transition `}>
-            <div className="relative w-max bg-black text-white text-sm p-3 rounded-lg shadow-lg">
-              <Image className="w-44" src={assets.qrcode} alt="" />
-              <p>Scan to get DeepSeek APP </p>
-              <div
-                className={`w-3 h-3 absolute bg-black rotate-45 ${
-                  expand ? "right-1/2" : "left-4"
-                } -bottom-1.5`}
-              ></div>
-            </div>
-            {expand && (
-              <>
-                <span>Get App</span>
-                <Image src={assets.new_icon} alt="" />{" "}
-              </>
-            )}
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };
