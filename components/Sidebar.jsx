@@ -66,16 +66,18 @@ const Sidebar = ({ expand, setExpand }) => {
         </button>
         {/* ------------ */}
         <div
-          className={`mt-8 text-white/25 text-sm${
-            expand ? "block" : "hidden"
-          }`}
+          className={`mt-8 text-white/25 text-sm${expand ? "block" : "hidden"}`}
         >
           <p className="my-1">Resents</p>
           {/* chat label  */}
         </div>
       </div>
       {/* add some space  */}
-      
+
+      {/* mobile app download section download section */}
+      <div>
+          
+      </div>
     </div>
   );
 };
