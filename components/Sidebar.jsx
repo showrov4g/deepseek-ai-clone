@@ -76,9 +76,29 @@ const Sidebar = ({ expand, setExpand }) => {
 
       {/* mobile app download section download section */}
       <div>
-        <Image className={expand ? "w-5" : "w-6.5 mx-auto"} src={expand ? assets.phone_icon : assets.phone_icon_dull} alt="" />
         <div>
-          <Image className="" src={assets.qrcode} alt=""/>
+          <Image
+            className={expand ? "w-5" : "w-6.5 mx-auto"}
+            src={expand ? assets.phone_icon : assets.phone_icon_dull}
+            alt=""
+          />
+          <div className={`absolute -top-60 pb-8 ${!expand && "-right-40 opacity-0 group-hover:opacity-100 hidden group-hover:block transition " }` }>
+            <div className="relative w-max bg-black text-white text-sm p-3 rounded-lg shadow-lg">
+              <Image className="" src={assets.qrcode} alt="" />
+              <p>scan to get app</p>
+              <div
+                className={`w-3 h-3 absolute bg-black rotate-45 ${
+                  expand ? "right-1/2" : "left-4"
+                } -bottom-1.5`}
+              ></div>
+            </div>
+          </div>
+          {expand && (
+            <>
+              <span>Get APP</span>
+              <Image alt="" src={assets.new_icon} />
+            </>
+          )}
         </div>
       </div>
     </div>
