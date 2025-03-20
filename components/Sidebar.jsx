@@ -76,7 +76,7 @@ const Sidebar = ({ expand, setExpand }) => {
 
       {/* mobile app download section download section */}
       <div>
-          
+        <Image src={expand ? assets.phone_icon : assets.phone_icon_dull} alt="" />
       </div>
     </div>
   );
