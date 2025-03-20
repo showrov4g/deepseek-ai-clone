@@ -76,7 +76,10 @@ const Sidebar = ({ expand, setExpand }) => {
 
       {/* mobile app download section download section */}
       <div>
-        <Image src={expand ? assets.phone_icon : assets.phone_icon_dull} alt="" />
+        <Image className={expand ? "w-5" : "w-6.5 mx-auto"} src={expand ? assets.phone_icon : assets.phone_icon_dull} alt="" />
+        <div>
+          <Image className="" src={assets.qrcode} alt=""/>
+        </div>
       </div>
     </div>
   );
