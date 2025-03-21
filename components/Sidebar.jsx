@@ -53,7 +53,7 @@ const Sidebar = ({ expand, setExpand }) => {
       </div>
 
       {/* App Download Section (Fixed at Bottom) */}
-      <div className="mt-auto relative">
+      <div className="mt-auto relative w-full">
         <div
           className={`flex items-center cursor-pointer group relative ${
             expand
@@ -63,15 +63,15 @@ const Sidebar = ({ expand, setExpand }) => {
         >
           <Image className={expand ? "w-5" : "w-6.5 mx-auto"} src={expand ? assets.phone_icon : assets.phone_icon_dull} alt="App" />
 
-          {/* QR Code Hover */}
+          {/* QR Code Hover (Fixed to Stay Inside Sidebar) */}
           <div
-            className="absolute -top-56 left-1/2 -translate-x-1/2 w-max p-3 bg-black text-white text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none"
+            className="absolute -top-48 right-0 w-max p-3 bg-black text-white text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none"
           >
             <Image className="w-44" src={assets.qrcode} alt="QR Code" />
             <p className="text-center mt-2">Scan to get the app</p>
             
             {/* Tooltip Arrow */}
-            <div className="absolute w-3 h-3 bg-black rotate-45 left-1/2 -translate-x-1/2 -bottom-1.5"></div>
+            <div className="absolute w-3 h-3 bg-black rotate-45 right-4 -bottom-1.5"></div>
           </div>
 
           {expand && (
