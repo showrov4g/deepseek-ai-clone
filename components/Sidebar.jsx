@@ -81,6 +81,14 @@ const Sidebar = ({ expand, setExpand }) => {
             </>
           )}
         </div>
+          {/* ------------------- */}
+          <div className={`flex items-center ${expand ? "hover:bg-white/10 rounded-lg ": "justify-center w-full"} gap-3 `}>
+            <Image src={assets.profile_icon} className="w-7" alt=""/>
+            {
+              expand && <span>My Profile</span> 
+            }
+          </div>
+
       </div>
     </div>
   );
