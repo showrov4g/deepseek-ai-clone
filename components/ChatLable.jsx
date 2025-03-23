@@ -2,7 +2,7 @@ import { assets } from '@/assets/assets'
 import Image from 'next/image'
 import React from 'react'
 
-const ChatLable = () => {
+const ChatLable = ({openMenu, setOpenMenu}) => {
   return (
     <div className='flex items-center justify-between p-2 text-white/80 rounded-lg text-sm group cursor-pointer '>
         <p className='group-hover:max-w-5/6 truncate'>Chat name here</p>
