@@ -8,8 +8,8 @@ const ChatLable = ({openMenu, setOpenMenu}) => {
         <p className='group-hover:max-w-5/6 truncate'>Chat name here</p>
         {/* ------------ */}
         <div className='group relative flex items-center justify-center h-6 w-6 aspect-square hover:bg-black/80 rounded-lg'>
-            <Image src={assets.three_dots} className='w-4' alt='' />
-            <div className='absolute -right-36 top-6 bg-gray-700 rounded-lg w-max p-2 '>
+            <Image src={assets.three_dots} className={`w-4 ${openMenu.open ? "" : "hidden"} group-hover:block `} alt='' />
+            <div className={`absolute -right-36 top-6 bg-gray-700 rounded-lg w-max p-2 ${openMenu.open ? "block" : "hidden"}`}>
                 <div className='flex items-center gap-3 hover:bg-white/10 px-3 py-2 rounded-lg'>
                     <Image src={assets.pencil_icon} className='w-4' alt=''/>
                     <p>Rename</p>
