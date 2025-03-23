@@ -3,9 +3,11 @@ import { assets } from "@/assets/assets";
 import Image from "next/image";
 import React from "react";
 import { useClerk, UserButton } from "@clerk/nextjs";
+import { useAppContext } from "@/context/AppContext";
 
 const Sidebar = ({ expand, setExpand }) => {
-  const { user, openSignIn } = useClerk();
+  const { openSignIn } = useClerk();
+  const {user} = useAppContext();
   return (
     <div
       className={`flex flex-col items-center bg-[#212327] pt-7 transition-all z-50 max-md:absolute max-md:h-screen ${
@@ -84,8 +86,11 @@ const Sidebar = ({ expand, setExpand }) => {
           )}
         </div>
           {/* ------------------- */}
-          <div onClick={openSignIn} className={`flex items-center ${expand ? "hover:bg-white/10 rounded-lg ": "justify-center w-full"} gap-3 `}>
-            <Image src={assets.profile_icon} className="w-7" alt=""/>
+          <div onClick={user ? null:openSignIn} className={`flex items-center ${expand ? "hover:bg-white/10 rounded-lg ": "justify-center w-full"} gap-3 `}>
+          {
+            user ? <UserButton /> :  <Image src={assets.profile_icon} className="w-7" alt=""/>
+          }
+           
             {
               expand && <span>My Profile</span> 
             }

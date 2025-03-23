@@ -13,7 +13,7 @@ export const AppContextProvider = ({children})=>{
     const {user} = useClerk();
    const value = {user};
     return (
-        <AppContext.Provider value={{value}}>
+        <AppContext.Provider value={value}>
             {children}
         </AppContext.Provider>
     )
