@@ -8,9 +8,9 @@ export async function POST(req) {
     const wh = new Webhook(process.env.SIGNIN_SECRET);
     const headerPayload = headers();
     const svixHeaders = {
-      "svix_id": headerPayload.get("svix_id"),
-      "svix-timestamp": headerPayload.get("svix-timestamp"),
-      "svix_signature": headerPayload.get("svix_signature"),
+      svix_id: headerPayload.get("svix_id"),
+      svix_timestamp: headerPayload.get("svix_timestamp"),
+      svix_signature: headerPayload.get("svix_signature"),
     };
 
     const payload = await req.json();
