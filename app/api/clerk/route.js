@@ -2,28 +2,16 @@ import { Webhook } from "svix";
 import connectDB from "@/config/db";
 import User from "@/models/User";
 import { headers } from "next/headers";
-import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
     const wh = new Webhook(process.env.SIGNIN_SECRET);
     const headerPayload = headers();
-
-    console.log("Headers received:", {
-      svix_id: headerPayload.get("svix-id"),
-      svix_timestamp: headerPayload.get("svix-timestamp"),
-      svix_signature: headerPayload.get("svix-signature"),
-    });
-
     const svixHeaders = {
-      svix_id: headerPayload.get("svix-id"),
-      svix_timestamp: headerPayload.get("svix-timestamp"),
-      svix_signature: headerPayload.get("svix-signature"),
+      "svix-id": headerPayload.get("svix-id"),
+      "svix-timestamp": headerPayload.get("svix-timestamp"),
+      "svix-signature": headerPayload.get("svix-signature"),
     };
-
-    if (!svixHeaders.svix_id || !svixHeaders.svix_timestamp || !svixHeaders.svix_signature) {
-      throw new Error("Missing webhook headers");
-    }
 
     const payload = await req.json();
     const body = JSON.stringify(payload);
@@ -55,9 +43,9 @@ export async function POST(req) {
         break;
     }
 
-    return NextResponse.json({ message: "Event Received" });
+    return Response.json({ message: "Event Received" });
   } catch (err) {
     console.error("Webhook error:", err);
-    return NextResponse.json({ error: "Invalid webhook" }, { status: 400 });
+    return Response.json({ error: "Invalid webhook" }, { status: 400 });
   }
 }
