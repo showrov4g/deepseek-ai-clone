@@ -42,7 +42,7 @@ export async function POST(req) {
         break;
 
       case "user.deleted":
-        await User.findByIdAndDelete(data.id);
+        await User.findOneAndDelete(data.id);
         break;
 
       default:
