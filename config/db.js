@@ -1,4 +1,4 @@
-"use client"
+
 import mongoose from "mongoose";
 
 let cashed = global.mongoose || {conn: null, promise: null}
