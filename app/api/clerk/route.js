@@ -2,11 +2,11 @@ import { Webhook } from "svix";
 import connectDB from "@/config/db";
 import User from "@/models/User";
 import { headers } from "next/headers";
-import { NextResponse } from "next/server"; // Use NextResponse
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    await connectDB(); // Ensure database is connected before anything else
+    await connectDB(); // Ensure database is connected
 
     const wh = new Webhook(process.env.SIGNIN_SECRET);
     const headerPayload = headers();
@@ -25,11 +25,21 @@ export async function POST(req) {
     const body = JSON.stringify(payload);
     const { data, type } = wh.verify(body, svixHeaders);
 
+    if (!data) {
+      throw new Error("Invalid webhook payload");
+    }
+
+    // Ensure email_addresses exist
+    const email = data?.email_addresses?.[0]?.email_address || "";
+    if (!email) {
+      throw new Error("Email address is missing in the webhook payload");
+    }
+
     const userData = {
       _id: data.id,
-      email: data.email_addresses[0].email_address,
-      name: `${data.first_name} ${data.last_name}`,
-      image: data.image_url,
+      email,
+      name: `${data.first_name || ""} ${data.last_name || ""}`.trim(),
+      image: data.image_url || "",
     };
 
     switch (type) {
@@ -38,20 +48,20 @@ export async function POST(req) {
         break;
 
       case "user.updated":
-        await User.findByIdAndUpdate(data.id, userData);
+        await User.findByIdAndUpdate(data.id, userData, { new: true, upsert: true });
         break;
 
       case "user.deleted":
-        await User.findOneAndDelete(data.id);
+        await User.findByIdAndDelete(data.id);
         break;
 
       default:
-        break;
+        console.log(`Unhandled webhook event type: ${type}`);
     }
 
     return NextResponse.json({ message: "Event Received" });
   } catch (err) {
     console.error("Webhook error:", err);
-    return NextResponse.json({ error: "Invalid webhook" }, { status: 400 });
+    return NextResponse.json({ error: err.message || "Invalid webhook" }, { status: 400 });
   }
 }
